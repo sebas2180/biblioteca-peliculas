@@ -1,0 +1,125 @@
+<div class="container" *ngIf= "isShow==false">
+  today: {{Pelicula.create_at | date:'yyyy-MM-dd'}}
+
+  <div class="card">
+    <div class="card-body">
+      <form >
+        
+        <legend class="text-center " *ngIf= "!isActualizar" >Ingreso de nueva pelicula</legend > 
+        <legend class="text-center bg-danger " *ngIf= "isActualizar" >ACTUALIZACION !!</legend > 
+   
+          <div class="form-group">
+            <label for="titulo">Pelicula</label>
+            <input type="text" 
+                   class="form-control" 
+                   id="titulo"  
+                   [(ngModel)]= "Pelicula.titulo"
+                   name="titulo" 
+                   autofocus 
+                   
+                   [required]
+                   onkeyup= "javascript:this.value=this.value.toLowerCase();">
+            <small id="titulo" class="form-text text-muted">Debe ingresarlo en español/ingles</small>
+          <button type="button" class="btn btn-success" (click)= "editar($event)"> Editar</button>
+          </div>
+
+          <div class="form-group">
+            <label for="anio">Año</label>
+            <input type="number"
+                  class="form-control" 
+                  id="anio" 
+                  name="anio" 
+                  [(ngModel)]= "Pelicula.anio"   
+                  [required]>
+          </div>
+       
+  
+        <div class="form-group">
+          <label for="ibdm">Ibdm</label>
+          <input type="number" 
+                 class="form-control" 
+                 id="ibdm" 
+                 name="ibdm" 
+                 [(ngModel)]= "Pelicula.ibdm"
+                 [required]>
+        </div>
+        <div class="form-group">
+          <label  required for="categoria">Categoria</label  >
+          <select class="form-control" id="categoria" required>
+          <option>Seleccione</option>
+            <option>Terror</option>
+            <option>Suspenso</option>
+            <option>Ciencia ficcion</option>
+            <option>Romance</option>
+            <option>Anime</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="url">Tapa</label>
+          <input type="text" id="url" name="url" 
+                  class="form-control" placeholder="Autor" 
+                  [(ngModel)]= "this.Pelicula.url"
+                  
+                  [required]
+                  >
+        </div>
+          
+        <div class="form-group">
+          <label for="sipnosis">Sipnosis</label>
+          <textarea class="form-control" 
+                    id="sipnosis" 
+                    rows="3"
+                    [(ngModel)]= "Pelicula.descripcion"
+                    name="sipnosis"
+                    [required]
+                    ></textarea>
+          <small id="sipnosis" class="form-text text-muted">Es opcional</small>    
+      </div> 
+        <button type="button" 
+                class="btn btn-primary btn-block" 
+                (click)= "preVisualizar()"
+            >Enviar</button>
+
+                
+  
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf= "isShow" id="divVisualizacion">
+  <div class="card border-secondary mb-3" style="max-width: 100rem;">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="card-title">{{Pelicula.titulo}}</h4>
+        <button class="btn btn-danger" (click)= "cancelar()">X</button>
+    </div>
+    <div class="card-body " style="align-items: center;">
+    <div class="row">
+      <div class="col-md-6">
+        <img [src]= "Pelicula.url == '' ? '/assets/noimg.png' : Pelicula.url" class="card-img-top" style="height: 80%;width: 50%;margin-left: 25%;">
+    
+      </div>
+      <div class="col-md-6">
+        <ul style="padding-top: 10px;">
+          <li> <h6 class="text-center ">Raking: #{{Pelicula.ranking}}</h6> </li>
+          <li> <h6 class="text-center">Año: {{Pelicula.anio}}</h6></li>
+          <li> <h6 class="text-center">Ibdm: {{Pelicula.ibdm}}</h6></li>
+          <li> <p>{{Pelicula.descripcion}}</p></li>
+      </ul>
+      </div>
+    </div>
+      
+
+    </div>
+    <div class="card-footer ">
+        <button class="btn btn-success btn-block" 
+                (click)= "enviar()"
+                *ngIf= "!isActualizar">Crear</button>
+
+        <button class="btn btn-danger btn-block" 
+                        (click)= "actualizar()" 
+                        *ngIf= "isActualizar">Actualizar</button>
+   
+      </div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <app-pelicula  class="col-md-4" *ngFor= "let pelicula of peliculas" [pelicula]= "pelicula"></app-pelicula>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-4 " *ngFor= "let pelicula of peliculas" >
+            <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="card-title">{{pelicula.pelicula}}</h2>
+                    <button class="btn btn-danger">Eliminar</button>
+                </div>
+                <div class="card-body ">
+                <h5 class="text-center">Raking: #{{pelicula.ranking}}</h5>
+                <h5 class="text-center">Año: {{pelicula.anio}}</h5>
+                <h5 class="text-center">Ibdm: {{pelicula.ibdm}}</h5>
+                <h5 class="text-center">Votos: {{pelicula.votos}}</h5>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success" (click)= "pelicula.voteUp()">Like</button>
+                    <button class="btn btn-danger" (click)= "pelicula.voteDown()">Not like</button>
+                </div>
+              </div>
+        </div>
+</div> -->
